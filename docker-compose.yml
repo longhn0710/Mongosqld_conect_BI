@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  mongosqld:
+    container_name: mongosqld
+    hostname: mongosqld
+    build:
+      context: .
+      args:
+        VERSION: ${VERSION}
+    image: lho28/mongosqld:${VERSION}
+    restart: always
+    ports:
+      - 3307:3307
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    environment:
+        MONGODB_URL: ${MONGODB_URL}
+
